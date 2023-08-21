@@ -1,6 +1,7 @@
 
 
-const BASE_SERVER_URL = 'http://127.0.0.1:8000';
+// const BASE_SERVER_URL = 'http://127.0.0.1:8000';
+const BASE_SERVER_URL = 'https://even-admin.boost-pop.com';
 
 const API_URL = `${BASE_SERVER_URL}/api`;
 
