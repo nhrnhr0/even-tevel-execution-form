@@ -40,3 +40,18 @@ function insert_empty_product() {
     <button on:click={insert_empty_product}>הוסף מוצר</button>
   </tbody>
 </table>
+
+<style>
+/* :global(tr) {
+  border: 1px solid black;
+} */
+:global(table tr) {
+  box-shadow: 0 0 4px #000;
+}
+/*
+table,
+th,
+:global(td) {
+  border: 1px solid black;
+} */
+</style>

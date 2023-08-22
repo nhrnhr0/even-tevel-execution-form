@@ -26,7 +26,7 @@ function recalculate_material() {
     // product.height = 10
     // product.material = 24 * 10
     // 24 is Math.ceil(15 / 12)
-    product.material = Math.ceil(product.width / product.running_meter_cut) * product.height;
+    product.material = Math.ceil(product.height / product.running_meter_cut) * product.running_meter_cut;
   } else if (product.unit == "square_meter") {
     product.material = product.height * product.width;
   } else if (product.unit == "unit") {
@@ -57,9 +57,9 @@ function recalculate_weight() {
     {#if product.unit == "running_meter"}
       <br />
       <label for="running_meter_cut"
-        >רוחב חתיכה
-        {#if product.running_meter_cut > 0 && product.width > 0}
-          (מטר רץ: {Math.ceil(product.width / product.running_meter_cut) * product.running_meter_cut})
+        >אורך חתיכה
+        {#if product.running_meter_cut > 0 && product.height > 0}
+          (מטר רץ: {Math.ceil(product.height / product.running_meter_cut) * product.running_meter_cut})
         {/if}
         <!-- {Math.ceil(product.width / product.running_meter_cut) * product.running_meter_cut} -->
       </label>
@@ -90,19 +90,19 @@ function recalculate_weight() {
   <td>
     <!-- <input type="number" bind:value={product.depth} on:input={recalculate_material} /> -->
     <!-- $page.data.weights -->
-    <select bind:value={product.depth} on:change={recalculate_weight}>
+    {#if product.depth != null && product.depth != -1}
+      <span>{$page.data.weights[product.depth].weight} ק"ג למ"ר</span>
+    {/if}
+    <select bind:value={product.depth} on:change={recalculate_weight} style="min-width: 100px;">
       {#each $page.data.weights as weight, inx}
         <option value={inx}>{weight.depth}</option>
       {/each}
     </select>
     <!-- {product.depth} -->
-    {#if product.depth != null && product.depth != -1}
-      <span>{$page.data.weights[product.depth].weight} ק"ג למ"ר</span>
-    {/if}
   </td>
   <td>
     {#if product.unit == "running_meter"}
-      <span>מטר רץ x אורך</span>
+      <span>מטר רץ</span>
     {:else if product.unit == "square_meter"}
       <span>אורך x רוחב </span>
     {:else if product.unit == "unit"}

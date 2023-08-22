@@ -31,7 +31,7 @@ $: {
       <CategoryBox {category} bind:selected_index={selected_category_index} index={i} />
     {/each}
   </div>
-  {JSON.stringify(selected_category_index)}
+  <!-- {JSON.stringify(selected_category_index)} -->
 
   {#if selected_category_index != -1}
     <div class="subcategories-grid-wraper">
@@ -45,7 +45,7 @@ $: {
     <EditProductTable bind:userEnteredData />
   {/if}
 
-  {JSON.stringify(userEnteredData)}
+  <!-- {JSON.stringify(userEnteredData)} -->
 </div>
 
 <style lang="scss">
